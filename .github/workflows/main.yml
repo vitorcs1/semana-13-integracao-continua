@@ -1,24 +1,20 @@
-name: Testar cadastro de usuários e turma
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+name: Python Workflow
+on: [push, pull_request]
 
 jobs:
-  build:
-
+  test:
+    name: Testes
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false      
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v3
+    - name: Checkout do código
+      uses: actions/checkout@v2
+
+    - name: Configurar ambiente Python
+      uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Install dependencies
+
+    - name: Executar testes
       run: |
-        python testes.py
+               python testes.py
